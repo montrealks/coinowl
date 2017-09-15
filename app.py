@@ -8,6 +8,6 @@ def getting_started():
     return "Hello World"
 
 
-app.run(debug=True) if __name__ == '__main__' and DEBUG else None
+# app.run(debug=True) if __name__ == '__main__' and DEBUG else None
 
 
