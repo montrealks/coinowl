@@ -1,6 +1,7 @@
 from flask import Flask
 import requests
 from configs import DEBUG
+from os import environ
 from twilio.rest import Client
 app = Flask(__name__)
 
@@ -29,12 +30,12 @@ def getting_started():
     message = client.messages.create(
         to="+15148065753",
         from_="+14387952675",
-        body="Hello from Python!")
+        body="Hello from Python loc!")
 
-    print(message.sid)
-    return "Hello World"
+    print(message.status)
+    return environ.get('webrun')
 
-
-# app.run(debug=True) if __name__ == '__main__' and DEBUG else None
+print(environ.get('webrun'))
+app.run(debug=True) if __name__ == '__main__' and DEBUG else None
 
 
