@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from src.clock import clock
+from src.clock import clock, repeated_job
 import requests
 from configs import DEBUG
 from os import environ
@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder="src/templates/")
 
 local_or_remote = " web" if environ.get('webrun') else " local"
 
-clock()
+repeated_job()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
