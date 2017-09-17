@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from src.clock import clock
 import requests
 from configs import DEBUG
 from os import environ
@@ -6,6 +7,8 @@ from twilio.rest import Client
 app = Flask(__name__, template_folder="src/templates/")
 
 local_or_remote = " web" if environ.get('webrun') else " local"
+
+clock()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -40,6 +43,23 @@ def mailgun_api(body=None):
                   "text": message})
     send_simple_message()
     return "Sending mail from" + local_or_remote
+
+
+@app.route('/clock_start', methods=['GET', 'POST'])
+def clock_starter():
+    scheduler = clock()
+    scheduler.start()
+    scheduler.print_jobs()
+
+    return "clocky mc clockface"
+
+@app.route('/clock_stop', methods=['GET', 'POST'])
+def clock_stopper():
+    scheduler = clock()
+    scheduler.get_jobs()
+    scheduler.print_jobs()
+
+    return "clocky mc clockface"
 
 @app.route('/sms', methods=['GET', 'POST'])
 def twilio_api(body=None):
