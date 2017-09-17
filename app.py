@@ -1,14 +1,27 @@
 from flask import Flask, render_template, request
 from src.clock import clock, repeated_job
+from src.models.sms import Sms
+from src.models.database import Database
+from src.models.job_searcher import JobSearcher
+
 import requests
 from configs import DEBUG
 from os import environ
-from twilio.rest import Client
 app = Flask(__name__, template_folder="src/templates/")
-
 local_or_remote = " web" if environ.get('webrun') else " local"
 
-repeated_job()
+Database.initialize()
+
+
+
+@app.route('/sms', methods=['GET', 'POST'])
+def twilio_api(body=None):
+    message = body if body is not None else "Hello from" + local_or_remote
+    sms = Sms(message)
+    sms.save_to_mongo()
+
+    return "Sending SMS from" + local_or_remote
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -61,23 +74,7 @@ def clock_stopper():
 
     return "clocky mc clockface"
 
-@app.route('/sms', methods=['GET', 'POST'])
-def twilio_api(body=None):
-    print(body)
-    message = body if body is not None else "Hello from" + local_or_remote
-    print(message)
-    # Twilio
-    # Your Account SID from twilio.com/console
-    account_sid = "AC5e763900f02b15a2670b6aea6d3ee111"
-    # Your Auth Token from twilio.com/console
-    auth_token  = "66c518075a5c322e72766bf8c336510c"
-    client = Client(account_sid, auth_token)
-    client.messages.create(
-        to="+15148065753",
-        from_="+14387952675",
-        body=message)
 
-    return "Sending SMS from" + local_or_remote
 
 
 if not environ.get('webrun'):
