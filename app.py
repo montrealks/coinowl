@@ -10,13 +10,8 @@ import datetime
 
 
 app = Flask(__name__, template_folder="src/templates/", static_folder="src/static")
-local_or_remote = " web" if environ.get('webrun') else " local"
-
-print(configs.MAILGUN_API)
 
 Database.initialize()
-
-
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -24,26 +19,6 @@ def home():
     if request.method == 'GET':
         return render_template('layout.html', today=datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
     return None
-
-
-
-@app.route('/reminder_form_consumer', methods=["POST"])
-def reminder_form_consumer():
-    print(request.form.get)
-    delivery_time = datetime.datetime.strptime(request.form['date-time'], '%d/%m/%Y %H:%M:%S')
-    body = request.form['body']
-    choice = request.form['sms_or_email']
-
-    if choice == "sms":
-        # Sms(body, delivery_time).save_to_mongo()
-        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
-    elif choice == "email":
-        # Email(body, delivery_time).save_to_mongo()
-        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
-    else:
-        # Email(body, delivery_time).save_to_mongo()
-        # Sms(body, delivery_time).save_to_mongo()
-        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
 
 
 @app.route('/crypto_form_consumer', methods=["POST"])
