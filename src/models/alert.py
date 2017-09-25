@@ -53,6 +53,7 @@ class Alert(object):
     @staticmethod
     def send_alerts():
         al = Alert.find_active_alerts()
+        print(len(al), 'active alerts')
         if len(al) > 0:
             for ats in al: # ats = alert to send
                 if ats['sms']:
