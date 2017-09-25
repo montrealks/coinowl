@@ -1,5 +1,6 @@
 __author__ = "Kris"
-from coinmarketcap import Market
+import requests
+
 
 
 class Currencies(object):
@@ -7,7 +8,8 @@ class Currencies(object):
 
     @staticmethod
     def get_all_currencies():
-        Currencies.CURRENCIES = Market().ticker()
+        r = requests.get("https://api.coinmarketcap.com/v1/ticker/")
+        Currencies.CURRENCIES = r.json()
 
     @staticmethod
     def get_currency_names():

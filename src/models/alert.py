@@ -3,6 +3,7 @@ from src.models.database import Database
 from src.models.crptocurrency import Currencies
 from src.models.sms import Sms
 from src.models.emails import Email
+
 import json
 
 class Alert(object):
@@ -35,18 +36,18 @@ class Alert(object):
 
         for alert in alerts:
             if alert['btc_alert_price'] > current_prices[alert['coin']] and current_prices[alert['coin']] > alert['btc_price_at_creation']:
-                print('price rose past desired amount, send alert')
-                # Send the alert
+
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
                 sent_alerts += 1
 
             if alert['btc_alert_price'] < current_prices[alert['coin']] and current_prices[alert['coin']] < alert['btc_price_at_creation']:
-                print('price fell bellow desired amount, send alert')
+                    
                 alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
                 # Delete the alert
                 sent_alerts += 1
+                
         return alerts_to_send
 
     @staticmethod
@@ -59,7 +60,7 @@ class Alert(object):
                     message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['btc_alert_price'])
                     Sms.send(target=target, message=message)
                 if ats['email']:
-                    target = ats['sms']
+                    target = ats['email']
                     message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['btc_alert_price'])
                     Email.send(target, message)
             return json.dumps({'status': 200})

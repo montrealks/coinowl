@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>chooser</title>
+    <title>CoinOwl</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--<script type="text/javascript" src="{{ url_for('static',filename='jquery/jquery-3.2.1.min.js') }}"></script>-->
@@ -32,12 +35,12 @@
     <div class="container">
         <div class="row" id="upper-space"></div>
         <div class="row">
-            <div class="col col-md-3"></div>
-            <div class="col col-md-6" id="main_view">
+            <div class="col col-md-2"></div>
+            <div class="col col-md-8" id="main_view">
                 {% include 'forms.html' %}
                 {% block content %}{% endblock %}
             </div>
-            <div class="col col-md-3"></div>
+            <div class="col col-md-2"></div>
         </div>
 
     </div>

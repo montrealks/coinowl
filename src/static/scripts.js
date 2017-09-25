@@ -42,8 +42,8 @@ $(function() {
             console.log(crypto_name);
             console.log(names.indexOf(crypto_name));
             var position =  names.indexOf($(this).val());
-            var btc_value = parseFloat(all[position][2]).toFixed(5);
-            var usd_value = parseFloat(all[position][1]).toFixed(5);
+            var btc_value = parseFloat(all[position][2]);
+            var usd_value = parseFloat(all[position][1]);
             var eth_value = (parseFloat(all[position][2]) / all[names.indexOf('Ethereum')][2]).toFixed(5)
 
             $('#chosen_icon').removeClass().addClass('cc ' + all[position][3]);

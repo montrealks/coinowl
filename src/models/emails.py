@@ -1,6 +1,4 @@
 __author__ = "Kris"
-from src.models.database import Database
-import datetime
 import requests
 import configs
 
@@ -8,7 +6,7 @@ import configs
 class Email(object):
 
     @staticmethod
-    def send(target, message, sender=None, subject="Crypto Price Alert"):
+    def send(target='kristifer.szabo@gmail.com', message="functionality test", sender=None, subject="Crypto Price Alert"):
         print("sending mail")
 
         return requests.post(

@@ -8,6 +8,7 @@ class Sms(object):
 
     @staticmethod
     def send(target, message, sender=configs.TWILIO_SENDER_NUMBER):
+        print('Sending SMS')
         # Twilio
         # Your Account SID from twilio.com/console
         account_sid = configs.TWILIO_SID
