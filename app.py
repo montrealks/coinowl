@@ -1,83 +1,66 @@
-from flask import Flask, render_template, request
-from src.clock import clock, repeated_job
+from flask import Flask, render_template, request, redirect, url_for
 from src.models.sms import Sms
 from src.models.database import Database
-from src.models.job_searcher import JobSearcher
-
+from src.models.alert import Alert
 import requests
-from configs import DEBUG
+import json
+import configs
 from os import environ
-app = Flask(__name__, template_folder="src/templates/")
+import datetime 
+
+
+app = Flask(__name__, template_folder="src/templates/", static_folder="src/static")
 local_or_remote = " web" if environ.get('webrun') else " local"
+
+print(configs.MAILGUN_API)
 
 Database.initialize()
 
 
 
-@app.route('/sms', methods=['GET', 'POST'])
-def twilio_api(body=None):
-    message = body if body is not None else "Hello from" + local_or_remote
-    sms = Sms(message)
-    sms.save_to_mongo()
-
-    return "Sending SMS from" + local_or_remote
-
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    print('hello')
     if request.method == 'GET':
-        return render_template('home.html')
+        return render_template('layout.html', today=datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+    return None
+
+
+
+@app.route('/reminder_form_consumer', methods=["POST"])
+def reminder_form_consumer():
+    print(request.form.get)
+    delivery_time = datetime.datetime.strptime(request.form['date-time'], '%d/%m/%Y %H:%M:%S')
+    body = request.form['body']
+    choice = request.form['sms_or_email']
+
+    if choice == "sms":
+        # Sms(body, delivery_time).save_to_mongo()
+        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
+    elif choice == "email":
+        # Email(body, delivery_time).save_to_mongo()
+        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
     else:
-        choice = request.form.get('choice')
-        body = request.form.get('body')
-
-        if choice == "sms":
-            return twilio_api(body=body)
-        elif choice == "email":
-            return mailgun_api(body=body)
-        else:
-            return render_template('home.html')
+        # Email(body, delivery_time).save_to_mongo()
+        # Sms(body, delivery_time).save_to_mongo()
+        return json.dumps({'status':'OK','body':body,'choice':choice, 'delivery date': delivery_time.timestamp()})
 
 
-@app.route('/mail', methods=['GET', 'POST'])
-def mailgun_api(body=None):
-    print(body)
-    message = body if body is not None else "Hello from" + local_or_remote
-    print(message)
-    # Mailgun
-    def send_simple_message():
-        print("sending mail")
-        return requests.post(
-            "https://api.mailgun.net/v3/sandboxa8e484718ff94915893b6851f8874884.mailgun.org/messages",
-            auth=("api", "key-3ac3180cb95d26588b96113d0f751d14"),
-            data={"from": "Excited User <mailgun@sandboxa8e484718ff94915893b6851f8874884.mailgun.org>",
-                  "to": ["kristifer.szabo@gmail.com"],
-                  "subject": "Hello",
-                  "text": message})
-    send_simple_message()
-    return "Sending mail from" + local_or_remote
+@app.route('/crypto_form_consumer', methods=["POST"])
+def crypto_form_consumer():
+    delivery_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+    coin = request.form['crypto_chooser']
+    price = request.form['amount_chooser']
+    email = request.form['user_email']
+    sms = request.form['user_phone']
+    btc_price_at_creation = request.form['btc_price_at_creation']
 
+    Alert.save_alert_to_db(coin, price, sms, email, delivery_time, btc_price_at_creation)
 
-@app.route('/clock_start', methods=['GET', 'POST'])
-def clock_starter():
-    scheduler = clock()
-    scheduler.start()
-    scheduler.print_jobs()
-
-    return "clocky mc clockface"
-
-@app.route('/clock_stop', methods=['GET', 'POST'])
-def clock_stopper():
-    scheduler = clock()
-    scheduler.get_jobs()
-    scheduler.print_jobs()
-
-    return "clocky mc clockface"
-
-
+    return json.dumps({'status':'OK','coin':coin,'price':price, 'delivery date': delivery_time})
 
 
 if not environ.get('webrun'):
-    app.run(debug=True) if __name__ == '__main__' and DEBUG else None
+    app.run(host='0.0.0.0', port=8080, debug=True) if __name__ == '__main__' and configs.DEBUG else None
 
 

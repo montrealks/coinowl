@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chooser</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<script type="text/javascript" src="{{ url_for('static',filename='jquery/jquery-3.2.1.min.js') }}"></script>-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts.js') }}"></script>
+    
+    
+
+     <!--for date time picker-->
+    <script type="text/javascript" src="{{ url_for('static', filename='datepicker/js/bootstrap-datetimepicker.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='datepicker/css/bootstrap-datetimepicker.css')}}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
+
+
+
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--<link rel="stylesheet" href="webfont/cryptocoins.css">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cryptowebfonts/cryptocoins.css')}}">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="row" id="upper-space"></div>
+        <div class="row">
+            <div class="col col-md-3"></div>
+            <div class="col col-md-6" id="main_view">
+                {% include 'forms.html' %}
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col col-md-3"></div>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+    </script>
+
+
+</body>
+<footer>
+
+</footer>
+</html>

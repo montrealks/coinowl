@@ -1,0 +1,109 @@
+
+
+#main_view {
+    top: 50%;
+}
+
+
+#upper-space {
+    height: 200px;
+}
+
+
+.equal-widths-buttons > button {
+    width: 33.3334% !important;
+    display: none !important;
+}
+
+.form-control {
+    height: 41px !important;
+}
+
+.input-group, #crypto-alert-create{
+    width: 100% !important;
+}
+
+
+.half_width_input{
+    width: 50% !important;
+    float: left;
+    height: 40px !important;
+}
+
+
+.coin_conversion_boxes {
+    width:  50% !important;
+    float: left;
+    height: 90px !important;
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+
+}
+
+.currency_conversion_foreground{
+    z-index: 99;
+    position: absolute;
+    font-family: Droid Serif;
+    font-size: x-large;
+    font-weight: bold;
+    top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.symbol_background_image {
+    font-size: 70px;
+    position: absolute;
+    opacity: 0.3;
+    top: -3px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 70px;
+    height: fit-content;
+}
+
+.currency_background_image {
+    margin-top: 4px;
+    font-size: 55px;
+    font-weight: 900;
+    color: darkgray;
+    opacity: 0.3;
+    width: 100%;
+    text-align: center;
+}
+
+#chosen_icon {
+    float: left;
+    margin-top: -5px;
+    margin-bottom: -4px;
+    padding-right: 5px;
+
+}
+
+#reminder_message {
+    display: none;
+}
+
+#reminder_delivery_datetime {
+    display: none;
+}
+
+#leftmost-conversion-boxes {
+    padding-right: 0;
+}
+
+#crypto-chooser-inputs {
+    padding-top: 15px;
+}
+
+#rightmost-conversion-boxes {
+    padding-left: 0;
+}
+
+.input-group-addon {
+    min-width: 42px !important;
+}
