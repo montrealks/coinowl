@@ -19,6 +19,7 @@ class Alert(object):
             'btc_price_at_creation': btc_price_at_creation
         }
         Database.insert('altcoin_alerts', json)
+        return json
 
     @staticmethod
     def get_alerts():
@@ -33,16 +34,22 @@ class Alert(object):
         alerts = Alert.get_alerts()
         sent_alerts = 0
         alerts_to_send = []
-
+        
         for alert in alerts:
-            if alert['btc_alert_price'] > current_prices[alert['coin']] and current_prices[alert['coin']] > alert['btc_price_at_creation']:
+            print(type(current_prices[alert['coin']]), type(alert['btc_alert_price']), type(alert['btc_price_at_creation']))
+            print(current_prices[alert['coin']])
 
+            current = current_prices[alert['coin']]
+            alert_price = alert['btc_alert_price']
+            then = alert['btc_price_at_creation']
+            
+            print(alert)
+            if current_prices[alert['coin']] < alert_price < then:
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
                 sent_alerts += 1
-
-            if alert['btc_alert_price'] < current_prices[alert['coin']] and current_prices[alert['coin']] < alert['btc_price_at_creation']:
-                    
+                
+            if then < alert_price < current:
                 alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
                 # Delete the alert
