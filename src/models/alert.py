@@ -47,19 +47,15 @@ class Alert(object):
             if current_prices[alert['coin']] < alert_price < then:
                 alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
-                # Delete or archive the alert
                 Database.move_to_archive(alert, alert['_id'])
-                # Database.insert('alert_archive', alert)
-                # Database.remove('altcoin_alerts', {'_id': alert['_id']})
                 
                 sent_alerts += 1
                 
             if then < alert_price < current:
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
-                # Delete or archive the alert
-                Database.insert('alert_archive', alert)
-                Database.remove('altcoin_alerts', {'_id': alert['_id']})
+                Database.move_to_archive(alert, alert['_id'])
+
                 sent_alerts += 1
                 
         return alerts_to_send
