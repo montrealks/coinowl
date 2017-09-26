@@ -30,3 +30,8 @@ class Database(object):
     @staticmethod
     def remove(collection, query):
         return Database.DATABASE[collection].remove(query)
+        
+    @staticmethod
+    def move_to_archive(data, _id):
+        Database.insert('alert_archive', data)
+        return Database.remove('altcoin_alerts', {'_id': _id})

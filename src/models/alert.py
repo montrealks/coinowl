@@ -1,8 +1,10 @@
 __author__ = "Kris"
+from bson.objectid import ObjectId
 from src.models.database import Database
 from src.models.crptocurrency import Currencies
 from src.models.sms import Sms
 from src.models.emails import Email
+
 
 import json
 
@@ -36,8 +38,6 @@ class Alert(object):
         alerts_to_send = []
         
         for alert in alerts:
-            print(type(current_prices[alert['coin']]), type(alert['btc_alert_price']), type(alert['btc_price_at_creation']))
-            print(current_prices[alert['coin']])
 
             current = current_prices[alert['coin']]
             alert_price = alert['btc_alert_price']
@@ -47,12 +47,19 @@ class Alert(object):
             if current_prices[alert['coin']] < alert_price < then:
                 alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
+                # Delete or archive the alert
+                Database.move_to_archive(alert, alert['_id'])
+                # Database.insert('alert_archive', alert)
+                # Database.remove('altcoin_alerts', {'_id': alert['_id']})
+                
                 sent_alerts += 1
                 
             if then < alert_price < current:
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
-                # Delete the alert
+                # Delete or archive the alert
+                Database.insert('alert_archive', alert)
+                Database.remove('altcoin_alerts', {'_id': alert['_id']})
                 sent_alerts += 1
                 
         return alerts_to_send
