@@ -45,12 +45,12 @@ class Alert(object):
             
             print(alert)
             if current_prices[alert['coin']] < alert_price < then:
-                alert['direction'] = 'exceeded'
+                alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
                 sent_alerts += 1
                 
             if then < alert_price < current:
-                alert['direction'] = 'fallen below'
+                alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
                 # Delete the alert
                 sent_alerts += 1
