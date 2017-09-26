@@ -1,29 +1,6 @@
 
 
 $(function() {
-        $("[name='sms_or_email']").click(function() {
-
-        var form_data = $('form').serializeArray();
-        form_data.push({'name': 'sms_or_email', 'value': $(this).val()})
-        console.log(form_data);
-            $.ajax({
-                url: '/reminder_form_consumer',
-                data: $.param(form_data),
-                type: 'POST',
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        });
-
-    $(".form_datetime").datetimepicker({
-        format: 'dd/MM/yyyy hh:mm:ss',
-        autoclose: 1,
-        minuteStep: 15
-        });
 
     $.getJSON( 'https://api.coinmarketcap.com/v1/ticker/', function( data ) {
       var names = [];
@@ -69,11 +46,9 @@ $(function() {
 
 
     $('#crypto-alert-create').click(function() {
-
         var form_data = $('form').serializeArray();
         var coin_current_price = parseFloat($('#btc_value').text());
         var coin_alert_price = parseFloat($("[name='amount_chooser']").val());
-
 
         form_data.push({'name': 'btc_price_at_creation', 'value': coin_current_price})
 
@@ -89,6 +64,9 @@ $(function() {
                     console.log(error);
                 }
             });
+        document.getElementById("kris").reset()
+
+
         });
 
 
