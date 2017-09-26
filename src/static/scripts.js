@@ -46,7 +46,7 @@ $(function() {
 
 
     $('#crypto-alert-create').click(function() {
-        var form_data = $('form').serializeArray();
+        var form_data = $('form').serializeArray()
         var coin_current_price = parseFloat($('#btc_value').text());
         var coin_alert_price = parseFloat($("[name='amount_chooser']").val());
 
@@ -64,15 +64,45 @@ $(function() {
                     console.log(error);
                 }
             });
-        document.getElementById("kris").reset()
+            
+        alert_message();
 
 
         });
 
 
-
+// $('last_submit_message').text(alert_message());
 
 });
+
+function alert_message(){
+    var form_data = {}
+    $('form').serializeArray().map(function(x){form_data[x.name] = x.value;}); 
+    var delivery_methods = "";
+    var direction = "";
+    var message = "";
+    // convert delivery methods into a string
+    if (form_data['user_email'] && form_data['user_email']){
+        delivery_methods = "SMS and Email alerts";
+    } else if (form_data['user_email']) {
+        delivery_methods = 'an email alert to ' + form_data['user_email'];
+    } else {
+        delivery_methods = 'an SMS alert to' + form_data['user_phone'];
+    }
+    
+    if (form_data['amount_chooser'] < form_data['btc_price_at_creation']) {
+        direction = "dropped below ";
+    } else {
+        direction = "risen above ";
+    }
+    
+    message = 'New '+ form_data['crypto_chooser'] + ' alert created: You will receive ' +
+    delivery_methods + ' when ' + form_data['crypto_chooser'] + ' has ' + direction +
+    form_data['amount_chooser'];
+    console.log(message);
+    $('#last_submit_message').text(message);
+    return message;
+}
 
 function email_and_sms_validator(email, sms){
     var regex_email = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
