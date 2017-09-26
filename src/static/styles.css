@@ -1,14 +1,31 @@
 
 
 #main_view {
-    top: 50%;
+    top: 10%;
 }
 
 
 #upper-space {
-    height: 200px;
+    height: 20px;
 }
 
+@media screen and (min-width: 768px)    {
+    .jumbotron {
+        padding-top: 25px !important;
+        padding-bottom: 25px !important;
+    }
+}
+.jumbotron {
+    background-color: #f7f7f7 !important;
+
+}
+
+ .jumbotron .container h1, p {
+    text-align: center;
+    color: darkgrey !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: bold !important;
+}
 
 .equal-widths-buttons > button {
     width: 33.3334% !important;
