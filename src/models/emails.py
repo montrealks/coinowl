@@ -10,9 +10,9 @@ class Email(object):
         print("sending mail")
 
         return requests.post(
-            "https://api.mailgun.net/v3/sandboxa8e484718ff94915893b6851f8874884.mailgun.org/messages",
+            configs.MAILGUN_POST,
             auth=("api", configs.MAILGUN_API),
-            data={"from": "Coin Alert <mailgun@sandboxa8e484718ff94915893b6851f8874884.mailgun.org>",
+            data={"from": configs.MAILGUN_FROM,
                   "to": target,
                   "subject": subject,
                   "text": message})

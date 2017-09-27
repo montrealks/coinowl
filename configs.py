@@ -4,6 +4,8 @@ from os import environ
 DEBUG = True
 
 TWILIO_SENDER_NUMBER = "+1 438-795-2675"
+MAILGUN_POST = "https://api.mailgun.net/v3/sandboxa8e484718ff94915893b6851f8874884.mailgun.org/messages"
+MAILGUN_FROM = "Coin Alert <mailgun@sandboxa8e484718ff94915893b6851f8874884.mailgun.org>"
 
 
 if not environ.get('webrun'):

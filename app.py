@@ -26,19 +26,12 @@ def home(check_now=None):
 
 @app.route('/crypto_form_consumer', methods=["POST"])
 def crypto_form_consumer():
-    delivery_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-    coin = request.form['crypto_chooser']
-    price = request.form['amount_chooser']
-    email = request.form['user_email']
-    sms = request.form['user_phone']
-    btc_price_at_creation = request.form['btc_price_at_creation']
+    form_data = request.form.to_dict()
+    Alert.save_alert_to_db(form_data)
     
-    print(request.form.to_dict())
+    print('new alert created: ', form_data)
     
-    print('new alert created: ', 
-    Alert.save_alert_to_db(coin, price, sms, email, delivery_time, btc_price_at_creation))
-    
-    return json.dumps({'status':'OK','coin':coin,'price':price, 'delivery date': delivery_time})
+    return json.dumps({'status':'OK','coin': form_data['coin'],'price': form_data['btc_alert_price']})
 
 
 if not environ.get('webrun'):

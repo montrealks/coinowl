@@ -11,18 +11,8 @@ import json
 class Alert(object):
 
     @staticmethod
-    def save_alert_to_db(coin, price, sms, email, timestamp, btc_price_at_creation):
-        json = {
-            'coin': coin,
-            'btc_alert_price': price,
-            'sms': sms if sms is not None else None,
-            'email': email if email is not None else None,
-            'creation_time': timestamp,
-            'btc_price_at_creation': btc_price_at_creation
-        }
-        Database.insert('altcoin_alerts', json)
-        
-        return json
+    def save_alert_to_db(data):
+        return Database.insert('altcoin_alerts', data)
 
 
     @staticmethod
@@ -35,30 +25,29 @@ class Alert(object):
 
     @staticmethod
     def find_active_alerts():
+        # Check for alerts that need to be triggered and sent
+
         current_prices = Currencies.get_current_price_btc()
         alerts = Alert.get_alerts()
+        
         sent_alerts = 0
         alerts_to_send = []
         
         for alert in alerts:
-
-            current = current_prices[alert['coin']]
+            current_price = current_prices[alert['coin']]
             alert_price = alert['btc_alert_price']
-            then = alert['btc_price_at_creation']
+            then_price = alert['btc_price_at_creation']
             
-            print(alert)
-            if current_prices[alert['coin']] < alert_price < then:
+            if current_price < alert_price < then_price:
                 alert['direction'] = 'fallen below'
                 alerts_to_send.append(alert)
                 Database.move_to_archive(alert, alert['_id'])
-                
                 sent_alerts += 1
                 
-            if then < alert_price < current:
+            if then_price < alert_price < current:
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
                 Database.move_to_archive(alert, alert['_id'])
-
                 sent_alerts += 1
                 
         return alerts_to_send
