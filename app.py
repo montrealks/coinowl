@@ -16,6 +16,7 @@ Database.initialize()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/<string:check_now>', methods=['GET', 'POST'])
 def home(check_now=None):
+    # For testing purposes. Manually checks for and send active alerts
     if check_now:
         print(check_now)
         print('checking alerts manually')
@@ -31,6 +32,8 @@ def crypto_form_consumer():
     email = request.form['user_email']
     sms = request.form['user_phone']
     btc_price_at_creation = request.form['btc_price_at_creation']
+    
+    print(request.form.to_dict())
     
     print('new alert created: ', 
     Alert.save_alert_to_db(coin, price, sms, email, delivery_time, btc_price_at_creation))

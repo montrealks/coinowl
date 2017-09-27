@@ -37,11 +37,6 @@ $(function() {
         });
     });
 
-    // Assign current BTC value as the alert placeholder after altcoin is chosen
-    $('#crypto_chooser input').blur(function() {
-        $("[name='amount_chooser']").attr('placeholder', $('#btc_value').text());
-    });
-
 
     // Submit form data
     $('#crypto-alert-create').click(function() {
@@ -106,7 +101,7 @@ function alert_message() {
     var delivery_methods = "";
     var direction = "";
     var message = "";
-    console.log(form_data)
+
     
     if (form_data['user_email'] && form_data['user_phone']) {
         delivery_methods = "SMS and Email alerts";
@@ -117,7 +112,7 @@ function alert_message() {
     else {
         delivery_methods = 'an SMS alert to ' + form_data['user_phone'];
     }
-    console.log(parseFloat(form_data['amount_chooser']),  parseFloat(form_data['btc_price_at_creation']))
+
     if (parseFloat(form_data['amount_chooser']) < parseFloat(form_data['btc_price_at_creation'])) {
         direction = "dropped below ";
     }

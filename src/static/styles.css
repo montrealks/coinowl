@@ -28,22 +28,19 @@
     font-weight: bold !important;
 }
 
-.equal-widths-buttons > button {
-    width: 33.3334% !important;
-    display: none !important;
-}
-
 .form-control {
     height: 41px !important;
 }
 
 .input-group, #crypto-alert-create{
     width: 100% !important;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 
 .half_width_input{
-    width: 50% !important;
+    width: 100% !important;
     float: left;
     height: 40px !important;
 }

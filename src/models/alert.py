@@ -21,10 +21,13 @@ class Alert(object):
             'btc_price_at_creation': btc_price_at_creation
         }
         Database.insert('altcoin_alerts', json)
+        
         return json
+
 
     @staticmethod
     def get_alerts():
+        # Returns an iterable MongoDB cursor object
         Database.initialize()
         alerts = Database.find('altcoin_alerts', {})
 

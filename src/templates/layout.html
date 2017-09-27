@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>CoinOwl</title>
-
+    <title>CoinOwl - Free altcoin price alerts</title>
+    <meta content="Set an alert and walk away, Coin Owl will watch the market and notify you when your price point has been reached." name="Description">
+    <!--Favicons-->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles.css') }}">
+    <!--jQuery-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!--Bootstrap CSS and JS-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='scripts.js') }}"></script>
-
-
+    <!--Cryptofonts-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cryptowebfonts/cryptocoins.css')}}">
+    <!--jQuery UI - For Autcomplete function-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <!--Local JS and CSS-->
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts.js') }}"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Coin Owl</h1>
+            <h1>CoinOwl</h1>
             <p>Set altcoin price alerts. Receive notifications through email and SMS. Free.</p>
-            <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
         </div>
     </div>
     <div class="container" id="altcoin-converter">
@@ -39,7 +39,5 @@
             <div class="col col-md-2"></div>
         </div>
     </div>
-
 </body>
-
 </html>
