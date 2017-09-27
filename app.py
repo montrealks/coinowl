@@ -7,7 +7,6 @@ import json
 import configs
 from os import environ
 import datetime 
-import argparse
 
 
 app = Flask(__name__, template_folder="src/templates/", static_folder="src/static")

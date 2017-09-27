@@ -44,7 +44,7 @@ class Alert(object):
                 Database.move_to_archive(alert, alert['_id'])
                 sent_alerts += 1
                 
-            if then_price < alert_price < current:
+            if then_price < alert_price < current_price:
                 alert['direction'] = 'exceeded'
                 alerts_to_send.append(alert)
                 Database.move_to_archive(alert, alert['_id'])
