@@ -121,6 +121,10 @@
     padding-left: 0;
 }
 
+#last_submit_message {
+    display: None;
+}
+
 .input-group-addon {
     min-width: 42px !important;
 }
