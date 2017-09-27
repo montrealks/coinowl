@@ -1,4 +1,5 @@
 $(function() {
+    // Get altcoin ticker from coinmarketcap
     $.getJSON('https://api.coinmarketcap.com/v1/ticker/', function(data) {
         var names = [];
         var all = [];
@@ -41,10 +42,6 @@ $(function() {
         $("[name='amount_chooser']").attr('placeholder', $('#btc_value').text());
     });
 
-    // // Validate the email and SMS values when either of them lose focus
-    // $("[name='user_email'], [name='user_phone']").blur(function() {
-    //     email_and_sms_validator();
-    // });
 
     // Submit form data
     $('#crypto-alert-create').click(function() {
@@ -104,6 +101,8 @@ function coin_choice_validator(names){
 function alert_message() {
     var form_data = {}
     $('form').serializeArray().map(function(x) { form_data[x.name] = x.value; });
+    form_data['btc_price_at_creation'] = parseFloat($('#btc_value').text())
+    
     var delivery_methods = "";
     var direction = "";
     var message = "";
@@ -118,8 +117,8 @@ function alert_message() {
     else {
         delivery_methods = 'an SMS alert to ' + form_data['user_phone'];
     }
-
-    if (form_data['amount_chooser'] < form_data['btc_price_at_creation']) {
+    console.log(parseFloat(form_data['amount_chooser']),  parseFloat(form_data['btc_price_at_creation']))
+    if (parseFloat(form_data['amount_chooser']) < parseFloat(form_data['btc_price_at_creation'])) {
         direction = "dropped below ";
     }
     else {

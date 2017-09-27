@@ -15,6 +15,7 @@
         padding-bottom: 25px !important;
     }
 }
+
 .jumbotron {
     background-color: #f7f7f7 !important;
 
@@ -60,10 +61,11 @@
 }
 
 .currency_conversion_foreground{
+    color: red;
     z-index: 99;
     position: absolute;
     font-family: Droid Serif;
-    font-size: x-large;
+    font-size: 30px;
     font-weight: bold;
     top: 30px;
     width: 100%;
@@ -73,7 +75,7 @@
 .symbol_background_image {
     font-size: 70px;
     position: absolute;
-    opacity: 0.3;
+    opacity: 0.1;
     top: -3px;
     bottom: 0;
     left: 0;
@@ -105,20 +107,34 @@
     display: none;
 }
 
-#reminder_delivery_datetime {
-    display: none;
+@media screen and (min-width: 1200px)    {
+    #leftmost-conversion-boxes {
+        padding-right: 0;
+    }
+    #rightmost-conversion-boxes {
+        padding-left: 0;
+    }
 }
 
-#leftmost-conversion-boxes {
-    padding-right: 0;
+
+@media screen and (max-width: 576px)    {
+    .coin_conversion_boxes {
+        width: 100% !important;
+    }
+    .half_width_input{
+    width: 100% !important;
+    float: left;
+    height: 40px !important;
 }
+}
+
+
+
+
+
 
 #crypto-chooser-inputs {
     padding-top: 15px;
-}
-
-#rightmost-conversion-boxes {
-    padding-left: 0;
 }
 
 #last_submit_message {
