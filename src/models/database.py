@@ -1,8 +1,9 @@
 __author__ = "Kris"
 import pymongo
+import configs
 
 class Database(object):
-    URI = "mongodb://kristifer:Bazooka1@ds139994.mlab.com:39994/heroku_426qrtg1"
+    URI = configs.MONGO_URI
     DATABASE = None
 
     @staticmethod
