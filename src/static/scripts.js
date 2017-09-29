@@ -12,6 +12,7 @@ $(function() {
         
         $('#crypto_chooser input').autocomplete({
             source: names,
+            minlength: 0,
             change: function( event) {
                 var coin = $(this).val();
                 if(coin === null || ($.inArray(coin, names) == -1))
@@ -19,6 +20,11 @@ $(function() {
                    $(this).attr('placeholder', 'Please choose a coin from the dropdown');
             }
         });
+        
+        $('#crypto_chooser input').focus(function() { $(this).autocomplete("search", " "); });
+        
+    });
+        
         
         
         $('#crypto_chooser input').on('focusout', function(e) {
@@ -82,7 +88,7 @@ $(function() {
 
         
     });
-});
+
 
 function coin_choice_validator(names){
     console.log('hello')
@@ -120,8 +126,8 @@ function alert_message() {
         direction = "risen above ";
     }
 
-    message = 'New ' + form_data['crypto_chooser'] + ' alert created: You will receive ' +
-        delivery_methods + ' when ' + form_data['crypto_chooser'] + ' has ' + direction +
+    message = 'New ' + form_data['coin'] + ' alert created: You will receive ' +
+        delivery_methods + ' when ' + form_data['coin'] + ' has ' + direction +
         form_data['btc_alert_price'] + ' BTC';
     return message;
 }
