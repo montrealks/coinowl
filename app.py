@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from src.models.sms import Sms
 from src.models.database import Database
 from src.models.alert import Alert
-from src.models.user_logging import UserData
+from src.models.geodatas import GeoData
 import requests
 import json
 import configs
@@ -15,7 +15,7 @@ Database.initialize()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/<string:check_now>', methods=['GET'])
 def home(check_now=None):
-    geodata = UserData.get_user_country()
+    geodata = GeoData.get_user_location()
     print("***** NEW USER FROM:", geodata['city'], 'in', geodata['country'], "*****")
     
     if check_now:
