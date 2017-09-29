@@ -165,7 +165,7 @@ function email_and_sms_validator() {
     
     if (currency && btc_alert_price){
         if (parseFloat(btc_value_now) > parseFloat(btc_alert_price)) {
-            direction = " when its value dropped below " + btc_alert_price + "BTC";
+            direction = " when its value drops below " + btc_alert_price + "BTC";
         } else {
             direction = " when its value has risen above " + btc_alert_price + "BTC";
         }
