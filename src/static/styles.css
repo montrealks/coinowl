@@ -24,8 +24,8 @@
 }
 
 #social-icons li{
-    text-align: right;
     list-style: none; 
+    text-align: right;
 }
 
 #email {
@@ -63,8 +63,9 @@
 }
 
 .input-group, #crypto-alert-create{
+    white-space: normal;
     width: 100% !important;
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
 }
 

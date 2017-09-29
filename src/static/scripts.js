@@ -39,6 +39,7 @@ $(function() {
             $('#btc_value').text(btc_value);
             $('#eth_value').text(eth_value);
             $('#usd_value').text('$' + usd_value);
+            $('#conversion-boxes-helptext').text(crypto_name + ' converts to:')
     
         });
     });
@@ -84,6 +85,7 @@ $(function() {
 
         // Reset all form fields
         document.getElementById('form').reset();
+        // Reset conversion boxes
         $('.currency_conversion_foreground').text('');
     });
     
@@ -92,8 +94,14 @@ $(function() {
             $('#email').show();
         });
     $('#email').parent('li').mouseleave(function(){
-        $('#email').toggle()
-    })
+        $('#email').toggle();
+    });
+    
+    $('[name="email"]').focusout(function(){
+        email_and_sms_validator()
+        
+    });
+    
 });
 
 function coin_choice_validator(names) {
@@ -138,33 +146,48 @@ function alert_message() {
     return message;
 }
 
-function email_and_sms_validator(email, sms) {
+function email_and_sms_validator() {
     var regex_email = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var regex_sms = /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/;
 
     var email = $("[name='email']").val();
     var sms = $("[name='sms']").val();
-
+    console.log(email + sms)
     var email_test = regex_email.test(email);
     var sms_test = regex_sms.test(sms)
-
+    
+    var direction = ""
     var currency = $('#crypto_chooser input').val();
-
+    var btc_value_now = parseFloat($('#btc_value').text());
+    var btc_alert_price = $('[name="btc_alert_price"]').val();
+    
+   
+    
+    if (currency && btc_alert_price){
+        if (parseFloat(btc_value_now) > parseFloat(btc_alert_price)) {
+            direction = " when its value dropped below " + btc_alert_price + "BTC";
+        } else {
+            direction = " when its value has risen above " + btc_alert_price + "BTC";
+        }
+    };
+    
+    
+    console.log(direction);
+    
     if (email_test && sms_test) {
-        $('#crypto-alert-create').text('Create both SMS and EMAIL alerts for ' + currency)
+        $('#crypto-alert-create').text('Send me both SMS and EMAIL alerts for ' + currency + direction)
         return true;
     }
     else if (email_test && !sms_test) {
-        $('#crypto-alert-create').text('Create an EMAIL alert for ' + currency)
+        $('#crypto-alert-create').text('Send me an EMAIL alert for ' + currency + direction)
         return true;
     }
     else if (sms_test && !email_test) {
-        $('#crypto-alert-create').text('Create an SMS alert for ' + currency)
+        $('#crypto-alert-create').text('Send me an SMS alert for ' + currency + direction)
         return true;
     }
     else {
         $('#crypto-alert-create').text('Please enter a delivery method to create an alert!')
-        $("[name='email']").focus();
         return false;
     };
 
