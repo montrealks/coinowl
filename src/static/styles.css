@@ -9,6 +9,36 @@
     height: 20px;
 }
 
+#lower-space {
+    height: 200vh;
+}
+
+#social-icons {
+    right: 5px;
+    position: absolute;
+    float: right;
+}
+
+#social-icons a{
+    color: black;
+}
+
+#social-icons li{
+    text-align: right;
+    list-style: none; 
+}
+
+#email {
+    display: none;
+    font-size: large;
+    vertical-align: bottom;
+    
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 @media screen and (min-width: 768px)    {
     .jumbotron {
         padding-top: 25px !important;

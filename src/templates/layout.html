@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CoinOwl - Free altcoin price alerts</title>
@@ -14,6 +15,9 @@
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
     <!--Cryptofonts-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cryptowebfonts/cryptocoins.css')}}">
+    <!--Other fonts-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome-webfont.ttf')}}">
     <!--jQuery UI - For Autcomplete function-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -26,6 +30,25 @@
     <div class="jumbotron">
         <div class="container">
             <h1>CoinOwl</h1>
+            <div id="social-icons">
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://github.com/montrealks/coinowl">
+                            <span><i class="fa fa-github fa-2x"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id='email-container'>
+                            <span><i class="fa fa-envelope fa-2x"></i></span>
+                        </a>
+                        <span id="email"> kristifer.szabo at gmail.com</span>
+                    </li>
+                </ul>
+
+
+
+                
+            </div>
             <p>Set altcoin price alerts. Receive notifications through email and SMS. Free.</p>
         </div>
     </div>
@@ -38,6 +61,8 @@
             </div>
             <div class="col col-md-2"></div>
         </div>
+        <div class="row" id="lower-space"></div>
     </div>
 </body>
+
 </html>
