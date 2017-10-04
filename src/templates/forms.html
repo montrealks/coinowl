@@ -1,110 +1,121 @@
 {% block content %}
+<div class="row">
+    <div class="col col-md-2"></div>
+    <div class="col col-md-8" id="main_view">
 
+        <div class="panel panel-default">
+            <div class="panel-heading" style="display: none">
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a href="#">Crypto Reminder</a></li>
+                </ul>
+            </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading" style="display: none">
-        <ul class="nav nav-pills">
-            <li role="presentation"><a href="#">Crypto Reminder</a></li>
-        </ul>
-    </div>
-
-    <div class="panel-body">
-        <div class="row"><p id="conversion-boxes-helptext">Choose an altcoin to see its conversion values:</p></div>
-        <form method="" action="" id="form">
-            <!--First Row: Conversion Boxes-->
-            <div class="row" id="currency-conversion-boxes">
-                <div class="col-xs-12 col-md-12 col-lg-6" id="leftmost-conversion-boxes">
-                    <!--Coin Conversion Box 1 USD-->
-                    <div class="well well-lg coin_conversion_boxes">
-                        <span class="currency_background_image">USD</span>
-                        <div class="currency_conversion_foreground" id="usd_value"></div>
-                    </div>
-                    <!--Coin Conversion Box 2 BTC-->
-                    <div class="well well-lg coin_conversion_boxes">
-                        <span class="symbol_background_image">
-                        <i class="cc BTC" title="BTC"></i></span>
-                        <span class="currency_conversion_foreground" id="btc_value"></span>
-                    </div>
+            <div class="panel-body">
+                <div class="row">
+                    <p id="conversion-boxes-helptext">Choose an altcoin to see its conversion values:</p>
                 </div>
-                <!--Coin Conversion Box 3 ETH-->
-                <div class="col-xs-12 col-md-12 col-lg-6" id="rightmost-conversion-boxes">
-                    <div class="well well-lg coin_conversion_boxes">
-                        <span class="symbol_background_image">
+                <form method="" action="" id="form">
+                    <!--First Row: Conversion Boxes-->
+                    <div class="row" id="currency-conversion-boxes">
+                        <div class="col-xs-12 col-md-12 col-lg-6" id="leftmost-conversion-boxes">
+                            <!--Coin Conversion Box 1 USD-->
+                            <div class="well well-lg coin_conversion_boxes">
+                                <span class="currency_background_image">USD</span>
+                                <div class="currency_conversion_foreground" id="usd_value"></div>
+                            </div>
+                            <!--Coin Conversion Box 2 BTC-->
+                            <div class="well well-lg coin_conversion_boxes">
+                                <span class="symbol_background_image">
+                        <i class="cc BTC" title="BTC"></i></span>
+                                <span class="currency_conversion_foreground" id="btc_value"></span>
+                            </div>
+                        </div>
+                        <!--Coin Conversion Box 3 ETH-->
+                        <div class="col-xs-12 col-md-12 col-lg-6" id="rightmost-conversion-boxes">
+                            <div class="well well-lg coin_conversion_boxes">
+                                <span class="symbol_background_image">
                                 <i class="cc ETH" title="ETH"></i>
                             </span>
-                        <span class="currency_conversion_foreground" id="eth_value"></span>
+                                <span class="currency_conversion_foreground" id="eth_value"></span>
+                            </div>
+                            <!--Coin Conversion Box 4 CAD-->
+                            <div class="well well-lg coin_conversion_boxes">
+                                <span class="currency_background_image">CAD</span>
+                                <span class="currency_conversion_foreground" id="cad_value"></span>
+                            </div>
+                        </div>
                     </div>
-                    <!--Coin Conversion Box 4 CAD-->
-                    <div class="well well-lg coin_conversion_boxes">
-                        <span class="currency_background_image">CAD</span>
-                        <span class="currency_conversion_foreground" id="cad_value"></span>
-                    </div>
-                </div>
-            </div>
 
-            <!--Second Row: Altcoin and Alert Amount Inputs-->
-            <div class="row" id="crypto-chooser-inputs">
-                <!--Altcoin Chooser-->
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group half_width_input" id="crypto_chooser">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">
+                    <!--Second Row: Altcoin and Alert Amount Inputs-->
+                    <div class="row" id="crypto-chooser-inputs">
+                        <!--Altcoin Chooser-->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group half_width_input" id="crypto_chooser">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
                                     <i id="chosen_icon" class="cc " title=""></i>
                             </span>
-                            <input size="16" type="text" name="coin" class="form-control" PLACEHOLDER="Coin to follow">
+                                    <input size="16" type="text" name="coin" class="form-control" PLACEHOLDER="Coin to follow">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!--Amount Chooser-->
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group half_width_input" id="amount_chooser">
-                        <div class="input-group">
-                            <input size="16" type="number" name="btc_alert_price" class="form-control" PLACEHOLDER="Alert amount in BTC">
-                            <span class="input-group-addon" id="basic-addon1">
+                        <!--Amount Chooser-->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group half_width_input" id="amount_chooser">
+                                <div class="input-group">
+                                    <input size="16" type="number" name="btc_alert_price" class="form-control" PLACEHOLDER="Alert amount in BTC">
+                                    <span class="input-group-addon" id="basic-addon1">
                                     <span class="glyphicon glyphicon-bitcoin" title="BTC"></span>
-                            </span>
-                            </span>
+                                    </span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
 
-            <!--Third Row: Email and SMS inputs-->
-            <div class="row">
-                <!--Email Input-->
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group half_width_input" id="user_email">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">
+                    <!--Third Row: Email and SMS inputs-->
+                    <div class="row">
+                        <!--Email Input-->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group half_width_input" id="user_email">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            </span>
+                                    </span>
 
-                            <input type="email" name="email" class="form-control" placeholder="Send me an email (Optional)" aria-describedby="basic-addon1">
+                                    <input type="email" name="email" class="form-control" placeholder="Send me an email (Optional)" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!--SMS Input-->
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group half_width_input" id="user_phone">
-                        <div class="input-group">
-                            <input type="tel" name="sms" class="form-control" placeholder="Send me an SMS (Optional)" aria-describedby="basic-addon1">
-                            <span class="input-group-addon" id="basic-addon1">
+                        <!--SMS Input-->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group half_width_input" id="user_phone">
+                                <div class="input-group">
+                                    <input type="tel" name="sms" class="form-control" placeholder="Send me an SMS (Optional)" aria-describedby="basic-addon1">
+                                    <span class="input-group-addon" id="basic-addon1">
                                     <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
-                            </span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!--Submit Button-->
-            <div class="btn-group btn-group-justified" role="group">
-                <button type="button" class="btn btn-info" name="crypto-alert-create" id="crypto-alert-create">Create Alert!
+                    <!--Submit Button-->
+                    <div class="btn-group btn-group-justified" role="group">
+                        <button type="button" class="btn btn-info" name="crypto-alert-create" id="crypto-alert-create">Create Alert!
                     </button>
+                    </div>
+                </form>
             </div>
-        </form>
+
+
+        </div>
+        <!--Succesful Alert Creation Info Box-->
+        <div class="alert alert-success" id="last_submit_message" role="alert"></div>
+    </div>
+    <div class="col col-md-2">
+        <div class="alert alert-info" id="price-helper-alert" role="alert">Enter a BTC amount. When your chosen altcoin reaches that amount you will receive an email or an sms or both</div>
     </div>
 </div>
-<!--Succesful Alert Creation Info Box-->
-<div class="alert alert-success" id="last_submit_message" role="alert"></div>
 
 {% endblock %}

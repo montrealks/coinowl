@@ -172,3 +172,14 @@
 .input-group-addon {
     min-width: 42px !important;
 }
+#price-helper-alert {
+    position: absolute;
+    display: none;
+}
+/*Bootstrap over rides*/
+.well.coin_conversion_boxes {
+    background-color: unset !important;
+    border: unset !important;
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset;
+}

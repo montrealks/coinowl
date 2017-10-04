@@ -21,7 +21,7 @@ $(function() {
             }
         });
 
-        $('#crypto_chooser input').focus(function() { $(this).autocomplete("search", " "); });
+        // $('#crypto_chooser input').focus(function() { $(this).autocomplete("search", " "); });
 
     
 
@@ -89,8 +89,15 @@ $(function() {
         $('.currency_conversion_foreground').text('');
     });
     
+    $('[name="btc_alert_price"]').focus(function(){
+        var pos=$('#crypto-chooser-inputs').position();
+        
+        $('#price-helper-alert').toggle().css('top', pos.top); 
+        
+    });
     
      $('#email-container').hover(function() {
+            
             $('#email').show();
         });
     $('#email').parent('li').mouseleave(function(){
