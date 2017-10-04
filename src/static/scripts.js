@@ -91,8 +91,10 @@ $(function() {
     
     $('[name="btc_alert_price"]').focus(function(){
         var pos=$('#crypto-chooser-inputs').position();
-        
-        $('#price-helper-alert').toggle().css('top', pos.top); 
+        var price_alert_helper = $('#price-helper-alert')
+        price_alert_helper
+        .toggle()
+        .css('top', pos.top - (price_alert_helper.height()/2)); 
         
     });
     
@@ -116,7 +118,7 @@ function coin_choice_validator(names) {
     var chosen_altcoin = $('#crypto_chooser input');
     if (chosen_altcoin === null || ($.inArray(chosen_altcoin.val(), names) == -1))
         chosen_altcoin.val(''); /* clear the value */
-    chosen_altcoin.attr('placeholder', 'Please choose a coin from the dropdown');
+    // chosen_altcoin.attr('placeholder', 'Please choose a coin from the dropdown');
 }
 
 // Creates an alert message underneath the tool after an alert is succesfully published

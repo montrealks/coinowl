@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
     <meta charset="UTF-8">
@@ -45,14 +46,17 @@
                     </li>
                 </ul>
             </div>
-            <p>Set altcoin price alerts. Receive notifications through email and SMS. Free.</p>
+            <!--<ul class="list-group">-->
+            <!--    <li class="list-group-item">Receive price alerts via email or SMS</li>-->
+            <!--    <li class="list-group-item">Convert altcoins to any currency</li>-->
+            <!--    <li class="list-group-item">Secure, Fast, Free</li>-->
+            <!--</ul>-->
         </div>
     </div>
-    <div class="container" id="altcoin-converter">
-        <div class="row" id="upper-space"></div>
-        
-                {% include 'forms.html' %} {% block content %}{% endblock %}
-            
+    <div class="container-fluid" id="altcoin-converter">
+
+        {% include 'forms.html' %} {% block content %}{% endblock %}
+
         <div class="row" id="lower-space"></div>
     </div>
 </body>
