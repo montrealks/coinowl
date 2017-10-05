@@ -34,6 +34,17 @@ def crypto_form_consumer():
     print('***** NEW ALERT CREATED: ', form_data, "******")
     
     return json.dumps({'status':'OK','coin': form_data['coin'],'price': form_data['btc_alert_price']})
+    
+@app.route('/play', methods=['GET'])
+def play():
+    # Just for fun, plays a random ambient song
+    from bs4 import BeautifulSoup as b
+    import random
+    options = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six', 'twenty-seven', 'twenty-eight', 'twenty-nine', 'thirty', 'thirty-one', 'thirty-two', 'thirty-three', 'thirty-four', 'thirty-five', 'thirty-six', 'thirty-seven', 'thirty-eight', 'thirty-nine', 'forty', 'forty-one', 'forty-two', 'forty-three', 'forty-four', 'forty-five', 'forty-six', 'forty-seven', 'forty-eight', 'forty-nine', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twentyone', 'twentytwo', 'twentythree', 'twentyfour', 'twentyfive', 'twentysix', 'twentyseven', 'twentyeight', 'twentynine', 'thirty', 'thirtyone', 'thirtytwo', 'thirtythree', 'thirtyfour', 'thirtyfive', 'thirtysix', 'thirtyseven', 'thirtyeight', 'thirtynine', 'forty', 'fortyone', 'fortytwo', 'fortythree', 'fortyfour', 'fortyfive', 'fortysix', 'fortyseven', 'fortyeight', 'fortynine']
+    r = requests.get('https://musicforprogramming.net/?' + random.choice(options))
+    soup = b(r.text)
+    link = soup.find('div', {'class': 'playerControls noselect'}).next_sibling.next_sibling.get('href')
+    return render_template('play.html', link=link)
 
 
 if not environ.get('webrun'):
