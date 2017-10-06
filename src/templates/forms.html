@@ -22,13 +22,13 @@
                             <!--Coin Conversion Box 1 USD-->
                             <div class="well well-lg coin_conversion_boxes">
                                 <span class="currency_background_image">USD</span>
-                                <div class="currency_conversion_foreground" id="usd_value"></div>
+                                <div class="currency_conversion_foreground" class="usd_value"></div>
                             </div>
                             <!--Coin Conversion Box 2 BTC-->
                             <div class="well well-lg coin_conversion_boxes">
                                 <span class="symbol_background_image">
                         <i class="cc BTC" title="BTC"></i></span>
-                                <span class="currency_conversion_foreground" id="btc_value"></span>
+                                <span class="currency_conversion_foreground" class="btc_value"></span>
                             </div>
                         </div>
                         <!--Coin Conversion Box 3 ETH-->
@@ -37,28 +37,28 @@
                                 <span class="symbol_background_image">
                                 <i class="cc ETH" title="ETH"></i>
                             </span>
-                                <span class="currency_conversion_foreground" id="eth_value"></span>
+                                <span class="currency_conversion_foreground" class="eth_value"></span>
                             </div>
                             <!--Coin Conversion Box 4 CAD-->
                             <div class="well well-lg coin_conversion_boxes">
                                 <span class="currency_background_image">CAD</span>
-                                <span class="currency_conversion_foreground" id="cad_value"></span>
+                                <span class="currency_conversion_foreground" class="cad_value"></span>
                             </div>
                         </div>
                     </div>
 
 
-                    <!--Second Row: Altcoin and Alert Amount Inputs-->
+                    
 
                     <!--Altcoin Chooser-->
                     <div class="col-xs-12">
-                        <div class="form-group" id="crypto_chooser">
+                        <div class="form-group">
                             <label for="coin">Choose a crypto currency to track:</label>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i id="chosen_icon" class="cc " title=""></i>
                                 </span>
-                                <input size="16" type="text" name="coin" class="form-control" PLACEHOLDER="Just type it in..">
+                                <input id="crypto_chooser" size="16" type="text" name="coin" class="form-control" PLACEHOLDER="Just type it in..">
                             </div>
                         </div>
                     </div>
@@ -68,22 +68,22 @@
                         <div class="well well-lg" id="conversion_amounts">
                             <table class="table">
                                 <tr>
-                                    <td rowspan="4">1 AdEx currently converts to</td>
+                                    <td rowspan="4" id="conversion_amounts_info"></td>
                                     <td></td>
-                                    <td>0.01 BTC</td>
+                                    <td class="btc_value"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>0.000017 ETH</td>
+                                    <td class="eth_value"></td>
                                 </tr>
                                 <tr>
 
                                     <td></td>
-                                    <td>239 USD</td>
+                                    <td class="usd_value"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>217 CAD</td>
+                                    <td class="cad_value"></td>
                                 </tr>
                             </table>
                         </div>
@@ -95,7 +95,7 @@
                         Choose a currency to use for price tracking. <br><span style="color: darkgray">You will receive a notification when AdEx reaches the desired value in this currency</span>
                     </label>
                             <div name="currency_chooser" id="currency_choice" class="text-center">
-                                <button type="button" class="btn btn-info btn-md currency_choice">USD</button>
+                                <button type="button" class="btn btn-info btn-default btn-md  currency_choice">USD</button>
                                 <button type="button" class="btn btn-default btn-md">BTC</button>
                                 <button type="button" class="btn btn-default btn-md">ETH</button>
                                 <button type="button" class="btn btn-default btn-md">CAD</button>
@@ -109,9 +109,9 @@
                             Send me an alert when AdEx reaches:
                             </label>
                         <div class="input-group">
-                            <input size="16" type="number" name="btc_alert_price" class="form-control" PLACEHOLDER="Alert amount in BTC">
-                            <span class="input-group-addon" id="basic-addon1">
-                                    <span class="glyphicon glyphicon-bitcoin" title="BTC"></span>
+                            <input size="16" type="number" name="btc_alert_price" id='btc_alert_price' class="form-control" PLACEHOLDER="Alert amount">
+                                <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-bitcoin" id="chosen_currency_icon" title="BTC"></span>
                             </span>
                             </span>
                         </div>
@@ -120,7 +120,7 @@
             
 
             <div class="col-xs-12">
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info" id="helper-text" role="alert">
                     You will receive a one-time notification when AdEx has risen above 0.001 BTC
                 </div>
             </div>
@@ -170,9 +170,6 @@
     <!--</div>-->
     <!--Succesful Alert Creation Info Box-->
     <div class="alert alert-success" id="last_submit_message" role="alert"></div>
-</div>
-<div class="col col-xs-0 col-md-2">
-    <div class="alert alert-info" id="price-helper-alert" role="alert">Enter a BTC amount. When your chosen altcoin reaches that amount you will receive an email or an sms or both</div>
 </div>
 </div>
 

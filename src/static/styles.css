@@ -50,6 +50,10 @@ p {
     font-weight: bold !important;
 }
 
+#helper-text {
+    display: none;
+}
+
 #conversion_amounts {
     padding: 0;
 }
