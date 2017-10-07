@@ -33,7 +33,7 @@ def crypto_form_consumer():
     
     print('***** NEW ALERT CREATED: ', form_data, "******")
     
-    return json.dumps({'status':'OK','coin': form_data['coin'],'price': form_data['btc_alert_price']})
+    return json.dumps({'status':'OK','coin': form_data['coin'],'price': form_data['alert_price']})
     
 @app.route('/play', methods=['GET'])
 def play():

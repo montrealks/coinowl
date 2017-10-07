@@ -50,7 +50,7 @@ p {
     font-weight: bold !important;
 }
 
-#helper-text {
+#helper-text, #conversion_amounts {
     display: none;
 }
 
