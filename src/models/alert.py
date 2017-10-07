@@ -1,7 +1,7 @@
 __author__ = "Kris"
 from bson.objectid import ObjectId
 from src.models.database import Database
-from src.models.crptocurrency import Currencies
+from src.models.crptocurrency import CryptoCurrencies, ExchangeRates
 from src.models.sms import Sms
 from src.models.emails import Email
 
@@ -25,18 +25,41 @@ class Alert(object):
 
     @staticmethod
     def find_active_alerts():
-        # Check for alerts that need to be triggered and sent
-
-        current_prices = Currencies.get_current_price_btc()
+        current_prices = CryptoCurrencies.get_current_price_btc_usd()
+        exchange_rates = ExchangeRates.exchange_rates()
         alerts = Alert.get_alerts()
-        
+        # print(current_prices)
+        # print(exchange_rates)
+
         sent_alerts = 0
         alerts_to_send = []
         
         for alert in alerts:
-            current_price = current_prices[alert['coin']]
-            alert_price = alert['btc_alert_price']
-            then_price = alert['btc_price_at_creation']
+            print(alert)
+            # current_price = current_prices[alert['coin']]
+            alert_price = float(alert['alert_price'])
+            then_price = float(alert['coin_current_price'])
+            
+            if alert['alert_currency'] == "BTC":
+                current_price = current_prices[alert['coin']]['BTC']
+        
+            elif alert['alert_currency'] == "USD":
+                current_price = current_prices[alert['coin']]['USD']
+                
+            elif alert['alert_currency'] == "ETH":
+                btc_current_price = current_prices[alert['coin']]['BTC']
+                current_price =  btc_current_price / current_prices['Ethereum']['BTC']
+                
+            else:
+                current_price = current_prices[alert['coin']]['USD'] * exchange_rates['CAD']
+                
+                
+            # usd_current_price = current_prices[alert['coin']]['USD']
+            # cad_current_price = current_prices[alert['coin']]['USD'] * exchange_rates['CAD']
+            # btc_current_price = current_prices[alert['coin']]['BTC']
+            # eth_current_price = btc_current_price / current_prices['Ethereum']['BTC']
+            
+            
             
             if current_price < alert_price < then_price:
                 alert['direction'] = 'fallen below'
@@ -60,11 +83,11 @@ class Alert(object):
             for ats in al: # ats = alert to send
                 if ats['sms']:
                     target = ats['sms']
-                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['btc_alert_price'])
+                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['alert_price'])
                     Sms.send(target=target, message=message)
                 if ats['email']:
                     target = ats['email']
-                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['btc_alert_price'])
+                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['alert_price'])
                     Email.send(target, message)
             return json.dumps({'status': 200})
         else:

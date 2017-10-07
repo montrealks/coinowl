@@ -51,7 +51,7 @@ $(function() {
         var form_data = $('form').serializeArray()
 
         // // Data not captured in the form
-        var alert_currency = $('button.currency_choice').val();
+        var alert_currency = $('button.currency_choice').text();
         var coin_current_price = parseFloat($('td.coin_current_price').attr('data-value'));
 
         // Add some data to the form
