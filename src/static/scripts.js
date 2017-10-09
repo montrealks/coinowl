@@ -164,12 +164,12 @@ function crypto_chooser_success(coin, names, all) {
 
 
 function coin_and_currency_validaion() {
-    if ($('#crypto_chooser input').val() === "") {
-        $('#crypto_chooser input').focus();
+    if ($('#crypto_chooser').val() === "") {
+        $('#crypto_chooser').focus();
         return false;
     }
-    if ($('#amount_chooser input').val() === "") {
-        $('#crypto_chooser input').focus();
+    if ($('#alert_price').val() === "") {
+        $('#alert_price').focus();
         return false;
     }
     return true;
