@@ -83,11 +83,11 @@ class Alert(object):
             for ats in al: # ats = alert to send
                 if ats['sms']:
                     target = ats['sms']
-                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['alert_price'])
+                    message = "Heads up. {} has {} {} {}".format(ats['coin'], ats['direction'], ats['alert_currency'], ats['alert_price'])
                     Sms.send(target=target, message=message)
                 if ats['email']:
                     target = ats['email']
-                    message = "Heads up. {} has {} BTC {}".format(ats['coin'], ats['direction'], ats['alert_price'])
+                    message = "Heads up. {} has {} {} {}".format(ats['coin'], ats['direction'], ats['alert_currency'], ats['alert_price'])
                     Email.send(target, message)
             return json.dumps({'status': 200})
         else:
