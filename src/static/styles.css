@@ -3,7 +3,7 @@
 }
 
 #lower-space {
-    height: 50vh;
+    height: 5vh;
 }
 
 #social-icons {
@@ -15,6 +15,33 @@
 
 #social-icons a{
     color: black;
+}
+
+
+#footer-container {
+    background-color: #f7f7f7;
+    width: -webkit-fill-available;
+    padding: 2vh 0 2.5vh 0;
+    margin-top: 2vh;
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+#altcoin-converter {
+    padding-bottom: 100px;
+    padding-top: 5%;
 }
 
 #social-icons li{
@@ -29,21 +56,28 @@
     
 }
 
-/*::-webkit-scrollbar { */
-/*    display: none; */
-/*}*/
+
 
 @media screen and (min-width: 768px)    {
     .jumbotron {
         padding-top: 25px !important;
         padding-bottom: 25px !important;
+        }
+    .container p {
+        display: block;
     }
 }
 
 .jumbotron {
     background-color: #f7f7f7 !important;
-
-}
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    background-color: #eee;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    botder-bottom-width: 2px
+    }
 
 p {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
@@ -71,18 +105,41 @@ table {
     margin-bottom: 0 !important;
 }
 
+#title p{
+    margin-top: 15px;
+    height: 4vh;
+    border-bottom-style: double;
+    color: #5cc0de;
+    
+    
+}
+#title p span {
+    color: darkgrey;
+}
+
+#TopMostIcons{
+    font-size: 4vh;
+    margin-top: 15px;
+    display: none;
+}
+
+
  .jumbotron .container p {
+    /*color: black !important;*/
     text-align: center;
-    color: darkgrey !important;
+    font-size: 3vh;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     font-weight: bold !important;
+    /*float: left;*/
  }
  .jumbotron .container h1 {
+    color: black !important;
     text-align: center;
-    color: darkgrey !important;
+    /*color: darkgrey !important;*/
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     font-weight: bold !important;
 }
+
 
 .form-control {
     height: 41px !important;

@@ -28,37 +28,68 @@
 </head>
 
 <body>
-    <div class="jumbotron">
-        <div class="container">
-            <h1>CoinOwl</h1>
-            <div id="social-icons">
-                <ul>
-                    <li>
-                        <a target="_blank" href="https://github.com/montrealks/coinowl">
-                            <span><i class="fa fa-github fa-2x"></i></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" id='email-container'>
-                            <span><i class="fa fa-envelope fa-2x"></i></span>
-                        </a>
-                        <span id="email"> kristifer.szabo at gmail.com</span>
-                    </li>
-                </ul>
+    <header>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-2 col-md-3 col-lg-4"></div>
+                <div class="col-sm-8 col-md-6 col-lg-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <div id="title">
+                                    <p>CoinOwl <span><small>Easy Altcoin Alerts</small></span></p>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div id="TopMostIcons">
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-question-circle-o pull-right" aria-hidden="true"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<p><small>Free altcoin price alerts to your phone or email</small></p>-->
+
+                        <!--<div id="social-icons">-->
+                        <!--    <ul>-->
+                        <!--        <li>-->
+                        <!--            <a target="_blank" href="https://github.com/montrealks/coinowl">-->
+                        <!--                <span><i class="fa fa-github fa-2x"></i></span>-->
+                        <!--            </a>-->
+                        <!--        </li>-->
+                        <!--        <li>-->
+                        <!--            <a href="#" id='email-container'>-->
+                        <!--                <span><i class="fa fa-envelope fa-2x"></i></span>-->
+                        <!--            </a>-->
+                        <!--            <span id="email"> kristifer.szabo at gmail.com</span>-->
+                        <!--        </li>-->
+                        <!--    </ul>-->
+                        <!--</div>-->
+                    </div>
+                </div>
             </div>
-            <!--<ul class="list-group">-->
-            <!--    <li class="list-group-item">Receive price alerts via email or SMS</li>-->
-            <!--    <li class="list-group-item">Convert altcoins to any currency</li>-->
-            <!--    <li class="list-group-item">Secure, Fast, Free</li>-->
-            <!--</ul>-->
         </div>
-    </div>
+    </header>
+
     <div class="container-fluid" id="altcoin-converter">
-
         {% include 'forms.html' %} {% block content %}{% endblock %}
-
-        <div class="row" id="lower-space"></div>
     </div>
+    <footer id="footer-container">
+        <div class="row">
+            <div class="col col-xs-12">
+                <p class="text-center">
+                    <small>Free altcoin price-alert tool.<br>
+            <a href="https://github.com/montrealks/coinowl">Open source code<span> <i class="fa fa-github fa-2x"></i></span></a><br>
+            Data from <a href="https://coinmarketcap.com/api/">coinmarketcap.com</a> and <a href="http://fixer.io/">fixer.io</a></small>
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
+
 
 </html>
