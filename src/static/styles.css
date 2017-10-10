@@ -4,7 +4,7 @@
 
 /* background for ligher areas */
 .bg-light {
-    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/round.png");
+    background: url("/static/images/round.png");
 }
 
 #lower-space {

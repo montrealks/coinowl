@@ -282,13 +282,13 @@ function random_background() {
     console.log(choice);
     switch(choice) {
     case 1:
-        $('body').css('background-image', 'url(https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png)');
+        $('body').css('background-image', 'url(static/images/ep_naturalblack.png)');
         break;
     case 2:
-        $('body').css('background-image', 'url(https://coinalert-montreallks.c9users.io/static/images/darkness.png)');
+        $('body').css('background-image', 'url(static/images/darkness.png)');
         break;
     case 3:
-        $('body').css('background-image', 'url(https://www.toptal.com/designers/subtlepatterns/patterns/dark-triangles.png)');
+        $('body').css('background-image', 'url(static/images/dark-triangles.png)');
         break;
 }
     
