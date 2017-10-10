@@ -2,15 +2,7 @@
     top: 10%;
 }
 
-body {
-    /* Background pattern from Subtle Patterns */
-    /* background: url(https://www.toptal.com/designers/subtlepatterns/patterns/organic-tiles.png); */
-    /* background-image: url(https://coinalert-montreallks.c9users.io/static/images/darkness.png); */
-    background-repeat: repeat;
-    /* background: url(https://www.toptal.com/designers/subtlepatterns/patterns/bo_play_pattern.png); */
-    /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/dark-triangles.png);*/
-}
-
+/* background for ligher areas */
 .bg-light {
     background: url("https://www.toptal.com/designers/subtlepatterns/patterns/round.png");
 }
@@ -129,6 +121,7 @@ table {
 
 #title p span {
     color: darkgrey;
+    /*font-size: 55%;*/
 }
 
 #TopMostIcons{
