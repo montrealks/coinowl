@@ -1,5 +1,5 @@
 $(function() {
-
+    random_background();
 
     // Currency choice buttons and currency icon changer
     $('#currency_choice button').click(function() {
@@ -9,22 +9,30 @@ $(function() {
 
     $('#crypto_chooser').focusin(function(){
         $('#helper-text').slideUp();
+        $('#conversion_amounts').slideUp();
     })
     
     // Get altcoin ticker from coinmarketcap
     $.getJSON('https://api.coinmarketcap.com/v1/ticker/', function(data) {
         var names = [];
         var all = [];
+        // Load the returned JSON into two lists which are used later
         $.each(data, function(key, val) {
             names.push(val['name']);
             all.push([val['name'], val['price_usd'], val['price_btc'], val['symbol']]);
         });
-
+        
+        
+        
+        // Load the crypto chooser autocomplete with the list
         $('#crypto_chooser').autocomplete({
             source: names,
-            minlength: 0,
-            change: function(event) {
-                var coin = $(this).val();
+            minlength: 1,
+            select: function(event, ui) {
+                // Get the input on selection from the dropdown
+                var coin = ui.item.value;
+                $("input#crypto_chooser").val(coin)
+                // Validate the coin
                 if (coin === null || ($.inArray(coin, names) == -1)) {
                     $(this).val(''); /* clear the value */
                     $(this).attr('placeholder', 'Please choose a coin from the dropdown');
@@ -34,6 +42,7 @@ $(function() {
                 }
             }
         });
+        
     });
 
     // Submit form data
@@ -266,4 +275,21 @@ function get_currency_rates(usd_rate) {
         var cad_rate = data['rates']['CAD'] * usd_rate;
         $('.cad_value').text('$' + cad_rate + " CAD").attr('data-value', cad_rate);;
     })
+}
+
+function random_background() {
+    var choice = Math.floor(Math.random() * 3) + 1;
+    console.log(choice);
+    switch(choice) {
+    case 1:
+        $('body').css('background-image', 'url(https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png)');
+        break;
+    case 2:
+        $('body').css('background-image', 'url(https://coinalert-montreallks.c9users.io/static/images/darkness.png)');
+        break;
+    case 3:
+        $('body').css('background-image', 'url(https://www.toptal.com/designers/subtlepatterns/patterns/dark-triangles.png)');
+        break;
+}
+    
 }

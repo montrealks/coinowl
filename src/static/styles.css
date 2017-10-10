@@ -2,6 +2,19 @@
     top: 10%;
 }
 
+body {
+    /* Background pattern from Subtle Patterns */
+    /* background: url(https://www.toptal.com/designers/subtlepatterns/patterns/organic-tiles.png); */
+    /* background-image: url(https://coinalert-montreallks.c9users.io/static/images/darkness.png); */
+    background-repeat: repeat;
+    /* background: url(https://www.toptal.com/designers/subtlepatterns/patterns/bo_play_pattern.png); */
+    /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/dark-triangles.png);*/
+}
+
+.bg-light {
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/round.png");
+}
+
 #lower-space {
     height: 5vh;
 }
@@ -76,7 +89,7 @@ html,body{
     background-color: #eee;
     border-bottom-style: solid;
     border-bottom-color: black;
-    botder-bottom-width: 2px
+    border-bottom-width: 2px
     }
 
 p {
@@ -105,14 +118,15 @@ table {
     margin-bottom: 0 !important;
 }
 
-#title p{
-    margin-top: 15px;
+#title p {
+    font-size: 3vh;
     height: 4vh;
+    margin-top: 15px;
     border-bottom-style: double;
     color: #5cc0de;
     
-    
 }
+
 #title p span {
     color: darkgrey;
 }
@@ -127,7 +141,6 @@ table {
  .jumbotron .container p {
     /*color: black !important;*/
     text-align: center;
-    font-size: 3vh;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     font-weight: bold !important;
     /*float: left;*/
@@ -228,6 +241,10 @@ table {
     }
     #rightmost-conversion-boxes {
         padding-left: 0;
+    }
+    #title p {
+        font-size: 4vh;
+        height: 5vh;
     }
 }
 
