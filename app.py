@@ -28,6 +28,7 @@ Database.initialize()
 def home(check_now=None):
     geodata = GeoData.get_user_location()
     if geodata['status'] == 'success':
+        Database.insert('user_locations', geodata)
         print("***** NEW USER FROM:", geodata['city'], 'in', geodata['country'], "*****")
     else:
         print('***** NEW USER: ADDRESS UNKOWN *****')
