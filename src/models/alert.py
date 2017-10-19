@@ -44,8 +44,6 @@ class Alert(object):
                 current_price = current_prices[alert['coin']]['BTC']
             
             elif alert['alert_currency'] == "USD":
-                print(current_prices)
-                # print(current_prices)
                 
                 current_price = current_prices[alert['coin']]['USD']
                 
