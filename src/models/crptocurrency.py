@@ -8,7 +8,7 @@ class CryptoCurrencies(object):
 
     @staticmethod
     def crypto_current_values():
-        r = requests.get("https://api.coinmarketcap.com/v1/ticker/")
+        r = requests.get("https://api.coinmarketcap.com/v1/ticker/?limit=0")
         CryptoCurrencies.CRYPTO_CURRENCIES = r.json()
 
     @staticmethod

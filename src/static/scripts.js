@@ -14,7 +14,7 @@ $(function() {
     })
     
     // Get altcoin ticker from coinmarketcap
-    $.getJSON('https://api.coinmarketcap.com/v1/ticker/', function(data) {
+    $.getJSON('https://api.coinmarketcap.com/v1/ticker/?limit=0', function(data) {
         var names = [];
         var all = [];
         // Load the returned JSON into two lists which are used later
