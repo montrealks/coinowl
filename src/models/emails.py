@@ -6,7 +6,7 @@ import configs
 class Email(object):
 
     @staticmethod
-    def send(target='kristifer.szabo@gmail.com', message="functionality test", sender=None, subject="Crypto Price Alert"):
+    def send(target='kristifer.szabo@gmail.com', message="functionality test", sender=None, subject="CoinOwl Price Alert"):
         print("sending mail")
 
         return requests.post(

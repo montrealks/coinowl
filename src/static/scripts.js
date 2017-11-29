@@ -23,8 +23,6 @@ $(function() {
             all.push([val['name'], val['price_usd'], val['price_btc'], val['symbol']]);
         });
         
-        
-        
         // Load the crypto chooser autocomplete with the list
         $('#crypto_chooser').autocomplete({
             source: names,
@@ -32,67 +30,25 @@ $(function() {
             select: function(event, ui) {
                 // Get the input on selection from the dropdown
                 var coin = ui.item.value;
-                $("input#crypto_chooser").val(coin)
-                // Validate the coin
-                if (coin === null || ($.inArray(coin, names) == -1)) {
-                    $(this).val(''); /* clear the value */
-                    $(this).attr('placeholder', 'Please choose a coin from the dropdown');
-                } else {
-                    crypto_chooser_success(coin, names, all);
-                    $('#conversion_amounts').slideDown();
-                }
+                
+                crypto_chooser_success(coin, names, all);
+                $('#conversion_amounts').slideDown();
             }
         });
         
-    });
-
-    // Submit form data
-    $('#crypto-alert-create').click(function() {
+        $('#crypto-alert-create').click(function() {
         // Validate coin and currency boxes not empty
-        if (!coin_and_currency_validaion()) { return; }
-
-        // Validate email and/or SMS
-        var email_and_sms = email_and_sms_validator()
-        if (!email_and_sms['email'] && !email_and_sms['sms']) {
-            return;
+        if (!coin_validation(names)) {
+            $('#crypto_chooser').focus();
+            $('#crypto_chooser').val('Please choose a coin from the autocomplete. Just start typing')
+            
+        } else if (!currency_validaion()) {
+            $('#alert_price').focus();
+        } else {
+            create_alert()
         }
-
-        // Get all form data: Coin, Alert Price, Email, and SMS
-        var form_data = $('form').serializeArray()
-
-        // // Data not captured in the form
-        var alert_currency = $('button.currency_choice').text();
-        var coin_current_price = parseFloat($('td.coin_current_price').attr('data-value'));
-
-        // Add some data to the form
-        form_data.push({ 'name': 'coin_current_price', 'value': coin_current_price })
-        form_data.push({ 'name': 'alert_currency', 'value': alert_currency })
-        console.log(form_data);
-
-        $.ajax({
-            url: '/crypto_form_consumer',
-            data: $.param(form_data),
-            type: 'POST',
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
         });
         
-        // Display last submitted alert info box
-        var succesful_alert_message = alert_created_message();
-        console.log(succesful_alert_message);
-        
-        $('#helper-text').slideDown().text(succesful_alert_message);
-
-        // Reset all form fields
-        document.getElementById('form').reset();
-        // Reset conversion boxes
-        $('.currency_conversion_foreground').text('');
-
-        // end submit form data
     });
 
     // Site owner social links
@@ -134,24 +90,56 @@ function pre_submit_help_alert() {
         }
     $('#helper-text').text(message)
 };
-    // Update the alert message with the right contact data
-    // if (email && sms) {
-    //     $('#crypto-alert-create').text('Send me both SMS and EMAIL alerts for ' + currency + direction)
-    //     return true;
-    // }
-    // else if (email && !sms) {
-    //     $('#crypto-alert-create').text('Send me an EMAIL alert for ' + currency + direction)
-    //     return true;
-    // }
-    // else if (sms && !email) {
-    //     $('#crypto-alert-create').text('Send me an SMS alert for ' + currency + direction)
-    //     return true;
-    // }
-    // else {
-    //     $('#crypto-alert-create').text('Please enter a delivery method to create an alert!')
-    //     return false;
-    // };
+
 }
+
+// Submit form data
+function create_alert(){
+    
+        // Validate email and/or SMS
+        var email_and_sms = email_and_sms_validator()
+        if (!email_and_sms['email'] && !email_and_sms['sms']) {
+            return;
+        }
+    
+        // Get all form data: Coin, Alert Price, Email, and SMS
+        var form_data = $('form').serializeArray()
+    
+        // // Data not captured in the form
+        var alert_currency = $('button.currency_choice').text();
+        var coin_current_price = parseFloat($('td.coin_current_price').attr('data-value'));
+    
+        // Add some data to the form
+        form_data.push({ 'name': 'coin_current_price', 'value': coin_current_price })
+        form_data.push({ 'name': 'alert_currency', 'value': alert_currency })
+        console.log(form_data);
+    
+        $.ajax({
+            url: '/crypto_form_consumer',
+            data: $.param(form_data),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        
+        // Display last submitted alert info box
+        var succesful_alert_message = alert_created_message();
+        console.log(succesful_alert_message);
+        
+        $('#helper-text').slideDown().text(succesful_alert_message);
+    
+        // Reset all form fields
+        document.getElementById('form').reset();
+        // Reset conversion boxes
+        $('.currency_conversion_foreground').text('');
+    
+        // end submit form data
+    };
+
 
 function crypto_chooser_success(coin, names, all) {
     // All of the things that happen when a valid coin is chosen
@@ -172,14 +160,16 @@ function crypto_chooser_success(coin, names, all) {
 
 }
 
-
-function coin_and_currency_validaion() {
-    if ($('#crypto_chooser').val() === "") {
-        $('#crypto_chooser').focus();
+function coin_validation(names) {
+    var coin = $('#crypto_chooser').val();
+    if ( coin === "" || $.inArray(coin, names)  === -1) {
         return false;
     }
+    return true;
+}
+
+function currency_validaion() {
     if ($('#alert_price').val() === "") {
-        $('#alert_price').focus();
         return false;
     }
     return true;
