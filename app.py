@@ -10,6 +10,7 @@ from os import environ
 import datetime
 from flask_compress import Compress
 
+# Compress files for faster loading
 compress = Compress()
 
 
