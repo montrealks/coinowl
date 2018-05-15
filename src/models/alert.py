@@ -35,7 +35,10 @@ class Alert(object):
         alerts_to_send = []
         
         for alert in alerts:
+            # Check if that coin still exists
             print(alert)
+
+            
             # current_price = current_prices[alert['coin']]
             alert_price = float(alert['alert_price'])
             then_price = float(alert['coin_current_price'])
